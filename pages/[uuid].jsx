@@ -160,7 +160,7 @@ export default function Home({ params }) {
 
                                         {/* <!-- Owner and property bookmark --> */}
                                         <div class="flex gap-4 items-center mt-4">
-                                            <span class="text-gray-800 text-lg font-semibold">{property.project}</span>
+                                            <span class="text-gray-800 text-lg font-semibold">{property.property_name}</span>
                                             {/* <div class="flex items-center gap-1">
                                                 <svg class="w-8 h-8 text-transparent" fill="#fbcb50" stroke="currentColor"
                                                     stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
