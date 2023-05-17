@@ -108,25 +108,24 @@ export default function Home({ params }) {
             const imageUrl = property_images && property_images.length > 0 ? property_images[0].image_url_thumbnail_1080 : '';
 
             // Update meta tags
-            const metaTags = [
-                { name: 'description', content: description },
-                { property: 'og:title', content: property_name },
-                { property: 'og:image', content: imageUrl },
-                // Add more meta tags as needed
-            ];
+            // const metaTags = [
+            //     { name: 'description', content: description },
+            //     { property: 'og:title', content: property_name },
+            //     { property: 'og:image', content: imageUrl },
+            // ];
 
             // Replace 'property_name' with the appropriate property to set the title dynamically
-            document.title = property_name;
+            // document.title = property_name;
 
             // Add the dynamic meta tags to the head
-            const head = document.getElementsByTagName('head')[0];
-            metaTags.forEach((tag) => {
-                const metaTag = document.createElement('meta');
-                Object.keys(tag).forEach((key) => {
-                    metaTag.setAttribute(key, tag[key]);
-                });
-                head.appendChild(metaTag);
-            });
+            // const head = document.getElementsByTagName('head')[0];
+            // metaTags.forEach((tag) => {
+            //     const metaTag = document.createElement('meta');
+            //     Object.keys(tag).forEach((key) => {
+            //         metaTag.setAttribute(key, tag[key]);
+            //     });
+            //     head.appendChild(metaTag);
+            // });
 
             if (property.property_images && property.property_images.length > 0) {
                 const images = property.property_images;
@@ -152,9 +151,9 @@ export default function Home({ params }) {
 
             <Head>
                 <title>{property.property_name}</title>
-                {/* <meta name="description" content={`${property.description}`}/>
+                <meta name="description" content={`${property.description}`}/>
                 <meta property="og:title" content={property.property_name}/>
-                <meta property="og:image" content={property.property_images && property.property_images.length > 0 ? property.property_images[0].image_url_thumbnail_1080 : ''}/> */}
+                <meta property="og:image" content={property.property_images && property.property_images.length > 0 ? property.property_images[0].image_url_thumbnail_1080 : ''}/>
             </Head>
 
             {
