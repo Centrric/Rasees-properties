@@ -91,9 +91,9 @@ export default function Home({data}) {
 
 
 
-        // setTimeout(() => {
-        //     setLoading(!loading)
-        // }, 3000);
+        setTimeout(() => {
+            setLoading(!loading)
+        }, 3000);
     }, [])
 
     // useEffect(() => {
@@ -138,13 +138,13 @@ export default function Home({data}) {
             </Head>
 
             {
-                loading &&
-                // ? (
-                //     <div class="w-full h-screen justify-center items-center animate-pulse flex flex-1 bg-[#f5f7fb]">
-                //         <Image src={Logo} className="w-[40rem]" alt="Raasees Properties" />
-                //     </div>
-                // )
-                //     :
+                loading
+                ? (
+                    <div class="w-full h-screen justify-center items-center animate-pulse flex flex-1 bg-[#f5f7fb]">
+                        <Image src={Logo} className="w-[40rem]" alt="Raasees Properties" />
+                    </div>
+                )
+                    :
                 (
                     <div class=" w-full bg-[#f5f7fb] px-0 md:px-4">
 
