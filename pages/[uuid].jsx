@@ -60,9 +60,9 @@ export default function Home({ params }) {
                 console.error(error);
             });
 
-        setTimeout(() => {
-            setLoading(!loading)
-        }, 3000);
+        // setTimeout(() => {
+        //     setLoading(!loading)
+        // }, 3000);
     }, [])
 
     // useEffect(() => {
@@ -99,13 +99,13 @@ export default function Home({ params }) {
             </Head>
 
             {
-                loading 
-                ? (
-                    <div class="w-full h-screen justify-center items-center animate-pulse flex flex-1 bg-[#f5f7fb]">
-                        <Image src={Logo} className="w-[40rem]" alt="Raasees Properties" />
-                    </div>
-                )
-                    :
+                loading &&
+                // ? (
+                //     <div class="w-full h-screen justify-center items-center animate-pulse flex flex-1 bg-[#f5f7fb]">
+                //         <Image src={Logo} className="w-[40rem]" alt="Raasees Properties" />
+                //     </div>
+                // )
+                //     :
                     (
                         <div class=" w-full bg-[#f5f7fb] px-0 md:px-4">
 
@@ -315,12 +315,11 @@ export default function Home({ params }) {
                                             property.property_type !== "plot" ? (
                                                 <>
                                                     <h1 class="text-lg font-semibold mt-6 mb-3">Facilities</h1>
-                                                    <div class="grid grid-cols-4 gap-4">
-
+                                                    <div class="grid xl:grid-cols-3 lg:grid-cols-2 lg:gap-0 md:grid-cols-1 md:gap-2 sm:gap-3 xxs:grid-cols-3 xxxs:grid-cols-2">
                                                         {
                                                             property?.amenities?.map((amenity) => (
                                                                 <div
-                                                                    class="p-3 border-2 rounded-xl flex flex-col justify-center items-center gap-[.5rem]">
+                                                                    class="p-3 w-24 border-2 rounded-xl flex flex-col justify-center items-center gap-[.5rem]">
                                                                     <Image class="w-8" src={amenity.amenity_icon} width={200} height={200} alt="" />
                                                                     <span class="text-gray-800 text-sm font-md text-center">{amenity.amenity}</span>
                                                                 </div>
