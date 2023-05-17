@@ -59,7 +59,7 @@ export default function Home({ params }) {
                 // if (data) {
                 //     const { property_name, property_description, property_images } = data;
                 //     const imageUrl = property_images && property_images.length > 0 ? property_images[0].url : ''; // Assuming the URL is stored in the 'url' property of the first image
-        
+
                 //     // Update meta tags
                 //     const metaTags = [
                 //         { name: 'description', content: property_description },
@@ -67,15 +67,15 @@ export default function Home({ params }) {
                 //         { property: 'og:image', content: imageUrl },
                 //         // Add more meta tags as needed
                 //     ];
-        
+
                 //     const tags = metaTags.map((tag, index) => {
                 //         const key = `meta-tag-${index}`;
                 //         return <meta key={key} {...tag} />;
                 //     });
-        
+
                 //     // Replace 'property.property_name' with the appropriate property to set the title dynamically
                 //     document.title = property_name;
-        
+
                 //     // Add the dynamic meta tags to the head
                 //     const head = document.getElementsByTagName('head')[0];
                 //     head.innerHTML = '';
@@ -88,7 +88,7 @@ export default function Home({ params }) {
                 console.error(error);
             });
 
-        
+
 
         // setTimeout(() => {
         //     setLoading(!loading)
@@ -103,20 +103,46 @@ export default function Home({ params }) {
     // }, [property])
 
     useEffect(() => {
-        if (property && property.property_images && property.property_images.length > 0) {
-            const images = property.property_images;
-            if (images.length < 6) {
-                const newDummy = [];
-                for (var i = 0; i < 5 - images.length; i++) {
-                    newDummy.push({ id: i + 1 });
+        if (property) {
+            const { property_name, description, property_images } = property;
+            const imageUrl = property_images && property_images.length > 0 ? property_images[0].image_url_thumbnail_1080 : '';
+
+            // Update meta tags
+            const metaTags = [
+                { name: 'description', content: description },
+                { property: 'og:title', content: property_name },
+                { property: 'og:image', content: imageUrl },
+                // Add more meta tags as needed
+            ];
+
+            // Replace 'property_name' with the appropriate property to set the title dynamically
+            document.title = property_name;
+
+            // Add the dynamic meta tags to the head
+            const head = document.getElementsByTagName('head')[0];
+            metaTags.forEach((tag) => {
+                const metaTag = document.createElement('meta');
+                Object.keys(tag).forEach((key) => {
+                    metaTag.setAttribute(key, tag[key]);
+                });
+                head.appendChild(metaTag);
+            });
+
+            if (property.property_images && property.property_images.length > 0) {
+                const images = property.property_images;
+                if (images.length < 6) {
+                    const newDummy = [];
+                    for (var i = 0; i < 5 - images.length; i++) {
+                        newDummy.push({ id: i + 1 });
+                    }
+                    setdummy(newDummy);
+                    setImg1(images);
+                    setImg2([]);
+                } else {
+                    setdummy([]);
+                    setImg1(images.slice(0, 6));
+                    setImg2(images.slice(6));
                 }
-                setdummy(newDummy);
-                setImg1(images);
-                setImg2([]);
-            } else {
-                setdummy([]);
-                setImg1(images.slice(0, 6));
-                setImg2(images.slice(6));
             }
         }
     }, [property]);
@@ -126,9 +152,9 @@ export default function Home({ params }) {
 
             <Head>
                 <title>{property.property_name}</title>
-                <meta name="description" content={`${property.description}`}/>
+                {/* <meta name="description" content={`${property.description}`}/>
                 <meta property="og:title" content={property.property_name}/>
-                <meta property="og:image" content={property.property_images && property.property_images.length > 0 ? property.property_images[0].image_url_thumbnail_1080 : ''}/>
+                <meta property="og:image" content={property.property_images && property.property_images.length > 0 ? property.property_images[0].image_url_thumbnail_1080 : ''}/> */}
             </Head>
 
             {
