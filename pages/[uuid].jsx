@@ -126,8 +126,9 @@ export default function Home({ params }) {
 
             <Head>
                 <title>{property.property_name}</title>
-                <meta name="description" content={`${property.description}`}></meta>
+                <meta name="description" content={`${property.description}`}/>
                 <meta property="og:title" content={property.property_name}/>
+                <meta property="og:image" content={property.property_images && property.property_images.length > 0 ? property.property_images[0].image_url_thumbnail_1080 : ''}/>
             </Head>
 
             {
