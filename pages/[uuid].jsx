@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home({ params }) {
+export default function Home({data}) {
 
     const router = useRouter()
     const { asPath } = useRouter()
@@ -44,12 +44,13 @@ export default function Home({ params }) {
             id: 5
         },
     ])
-
+    // console.log(props)
     useEffect(() => {
-
+        // console.log(props)
         console.log(document.location.href)
         // split the document.location.href on seeing / and store the last element of array to uuid
         const uuid = document.location.href.split('/').pop()
+        
         // fetch the data from the api "http://164.92.86.98/api/v1/property/share/d8f168b4-b860-4a75-88ec-960ed8bd9d49/" and set to the state "property"
         fetch(`https://app.raasees.com/api/v1/property/share/${uuid}/`)
             .then((res) => res.json())
@@ -150,10 +151,10 @@ export default function Home({ params }) {
         <>
 
             <Head>
-                <title>{property.property_name}</title>
-                <meta name="description" content={`${property.description}`}/>
-                <meta property="og:title" content={property.property_name}/>
-                <meta property="og:image" content={property.property_images && property.property_images.length > 0 ? property.property_images[0].image_url_thumbnail_1080 : ''}/>
+                <title>{data.property_name}</title>
+                <meta name="description" content={`${data.description}`}/>
+                <meta property="og:title" content={data.property_name}/>
+                <meta property="og:image" content={data.property_images && data.property_images.length > 0 ? data.property_images[0].image_url_thumbnail_1080 : ''}/>
             </Head>
 
             {
@@ -471,3 +472,16 @@ export default function Home({ params }) {
         </>
     )
 }
+
+export async function getServerSideProps(context) {
+    
+    // split the document.location.href on seeing / and store the last element of array to uuid
+    // const uuid = document.location.href.split('/').pop()
+
+    const res  = await fetch(`https://app.raasees.com/api/v1/property/share/d8f168b4-b860-4a75-88ec-960ed8bd9d49/`)
+    const data = await res.json()
+    
+    return {
+      props : {data} // will be passed to the page component as props
+    };
+  }
