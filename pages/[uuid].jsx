@@ -22,6 +22,8 @@ export default function Home({data}) {
 
         setImg1(data.property_images)
 
+        console.log(data)
+
         setTimeout(() => {
             setLoading(!loading)
         }, 3000);
@@ -32,7 +34,7 @@ export default function Home({data}) {
 
             <Head>
                 <title>{data.property_name}</title>
-                <meta name="description" content={data.description}/>
+                <meta name="description" content={`Description : ${data.description} state : ${data.state} city : ${data.city} dimension : ${data.dimension}`}/>
                 <meta property="og:title" content={data.property_name}/>
                 <meta property="og:image" content={data.property_images && data.property_images.length > 0 ? data.property_images[0].image_url_thumbnail_1080 : ''}/>
                 <meta property="title" content={data.property_name}/>
