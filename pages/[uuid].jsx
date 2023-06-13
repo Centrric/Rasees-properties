@@ -34,14 +34,15 @@ export default function Home({ data }) {
 
             <Head>
                 <title>{data.property_name}</title>
-                <meta
-                    name="description"
-                    content={
-                        data.description
-                            ? `Description: ${data.description} state: ${data.state} city: ${data.city} dimension: ${data.dimension} Facing Towards: ${data.faced_towards} Ploat Area: ${data.plot_area} plot Length: ${data.plot_length} Plot Breadth : ${data.plot_breadth} Price : ${data.price}/${data.per_unit}`
-                            : `state: ${data.state} city: ${data.city} dimension: ${data.dimension} Facing Towards: ${data.faced_towards} Ploat Area: ${data.plot_area} plot Length: ${data.plot_length} Plot Breadth : ${data.plot_breadth} Price : ${data.price}/${data.per_unit} `
-                    }
-                />
+                <meta name="description" content={`Description: ${data.description}`} />
+                <meta name="description" content={`State: ${data.state}`} />
+                <meta name="description" content={`City: ${data.city}`} />
+                <meta name="description" content={`Dimension: ${data.dimension}`} />
+                <meta name="description" content={`Facing Towards: ${data.faced_towards}`} />
+                <meta name="description" content={`Plot Area: ${data.plot_area}`} />
+                <meta name="description" content={`Plot Length: ${data.plot_length}`} />
+                <meta name="description" content={`Plot Breadth: ${data.plot_breadth}`} />
+                <meta name="description" content={`Price: ${data.price}/${data.per_unit}`} />
                 <meta property="og:title" content={data.property_name} />
                 <meta property="og:image" content={data.property_images && data.property_images.length > 0 ? data.property_images[0].image_url_thumbnail_1080 : ''} />
                 <meta property="title" content={data.property_name} />
