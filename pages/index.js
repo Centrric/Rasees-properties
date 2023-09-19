@@ -12,10 +12,10 @@ export default function Home({ children, href }) {
   const router = useRouter()
 
   useEffect(() => {
-    setInterval(() => {
-      router.push("/1ca248cd-2a19-4c6b-a4d4-a189d8228329")
-    }, 3000);
-  })
+    // setInterval(() => {
+      router.push("/4ba47ece-261a-4b4d-a830-ccd10ff2b8d8")
+    // }, 1000);
+  },[])
 
   return (
     <>
@@ -24,7 +24,7 @@ export default function Home({ children, href }) {
         <title>Rasees Properties</title>
       </Head>
 
-      <div class="w-full h-screen justify-center items-center animate-pulse flex flex-1 bg-[#f5f7fb]">
+      <div className="w-full h-screen justify-center items-center animate-pulse flex flex-1 bg-[#f5f7fb]">
               <Image src={Logo} className="w-[40rem]" alt="Raasees Properties" />
       </div>
     </>
