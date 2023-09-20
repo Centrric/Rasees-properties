@@ -220,6 +220,8 @@ export default function Home({ data }) {
 								</div>
 
 								{/* <!-- description --> */}
+								{
+									data.property_type !== 'plot' &&
 								<div className='flex flex-col  mt-4'>
 									<span className='text-gray-800 text-lg font-semibold'>Description</span>
 
@@ -229,6 +231,8 @@ export default function Home({ data }) {
 										<span className='text-gray-600 text-md mb-6'>No description available</span>
 									)}
 								</div>
+								}
+
 							</div>
 
 							{/* api integration complete below */}
