@@ -54,7 +54,7 @@ export default function Home({ data }) {
 					// }       Price : ${data.price}${data.per_unit !== 'total' ? `${data.per_unit}` : ''} ${
 					// 	data.description ? `Description: ${data.description} ` : ''
 					// } `}
-                    content={`Price : ${data.price_in_words || data.price_formatted ||data.price}${data.per_unit !== 'total' ? `${data.per_unit}` : ''} ${
+                    content={`Price : ${data.price_in_words || data.price_formatted ||data.price}${data.per_unit !== 'total' ? `/${data.per_unit}` : ''} ${
 						data.description ? `Description: ${data.description} ` : ''
 					} `}
 				/>
