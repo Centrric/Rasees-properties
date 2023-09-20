@@ -89,7 +89,7 @@ export default function Home({ data }) {
 					{/* <!-- body --> */}
 
 					<div className='main w-full flex justify-center pb-3  md:px-4 '>
-						<div className=' md:container flex md:flex-row flex-col w-full bg-white rounded-3xl px-5 py-6 pb-12 md:pb-6 drop-shadow-2xl'>
+						<div className='relative md:container  flex md:flex-row flex-col w-full bg-white rounded-3xl px-5 py-6 pb-12 md:pb-6 drop-shadow-2xl'>
 							{/* <!-- left side --> */}
 							<div className='w-full md:w-2/3'>
 								<div className='left flex '>
@@ -278,23 +278,75 @@ export default function Home({ data }) {
 												<span className='text-gray-800 text-lg font-semibold'>Total Sqft</span>
 												<span className='text-gray-600 text-md'>{data.total_sqft || 'nil'}</span>
 											</div>
+
+{
+	data.buildup_area &&
+
+	<div className='flex flex-col'>
+	<span className='text-gray-800 text-lg font-semibold'>Build up area</span>
+	<span className='text-gray-600 text-md'>{data.buildup_area || 'nil'}</span>
+</div>
+}
+{
+	data.carpet_area &&
+
+	<div className='flex flex-col'>
+	<span className='text-gray-800 text-lg font-semibold'>Carpet area</span>
+	<span className='text-gray-600 text-md'>{data.carpet_area || 'nil'}</span>
+</div>
+}
+{
+	data.total_units &&
+
+	<div className='flex flex-col'>
+	<span className='text-gray-800 text-lg font-semibold'>Total Units</span>
+	<span className='text-gray-600 text-md'>{data.total_units || 'nil'}</span>
+</div>
+}
+{
+	data.unsold_units &&
+
+	<div className='flex flex-col'>
+	<span className='text-gray-800 text-lg font-semibold'>Available Units</span>
+	<span className='text-gray-600 text-md'>{data.unsold_units || 'nil'}</span>
+</div>
+}
+
+{
+	data.address &&
+
+	<div className='flex flex-col'>
+	<span className='text-gray-800 text-lg font-semibold'>Address</span>
+	<span className='text-gray-600 text-md'>{data.address || 'nil'}</span>
+</div>
+}
+
+
 										</>
 									) : (
 										<>
 											<div className='flex flex-col'>
-												<span className='text-gray-800 text-lg font-semibold'>Length</span>
+												<span className='text-gray-800 text-lg font-semibold'>Plot Length</span>
 												<span className='text-gray-600 text-md'>{data.plot_length || 'nil'}</span>
 											</div>
 											<div className='flex flex-col'>
-												<span className='text-gray-800 text-lg font-semibold'>Breadth</span>
+												<span className='text-gray-800 text-lg font-semibold'>Plot Breadth</span>
 												<span className='text-gray-600 text-md'>{data.plot_breadth || 'nil'}</span>
 											</div>
 											<div className='flex flex-col'>
-												<span className='text-gray-800 text-lg font-semibold'>Total Area</span>
+												<span className='text-gray-800 text-lg font-semibold'>Plot Area</span>
 												<span className='text-gray-600 text-md'>
 													{data.plot_area || 'nil'} {data.plot_area_unit || ''}
 												</span>
 											</div>
+											{
+	data.address &&
+
+	<div className='flex flex-col'>
+	<span className='text-gray-800 text-lg font-semibold'>Address</span>
+	<span className='text-gray-600 text-md'>{data.address || 'nil'}</span>
+</div>
+}
 										</>
 									)}
 								</div>
@@ -303,7 +355,7 @@ export default function Home({ data }) {
 
 								{data.property_type !== 'plot' ? (
 									<>
-										<h1 className='text-lg font-semibold mt-6 mb-3'>Facilities</h1>
+										<h1 className='text-lg font-semibold mt-6 mb-3 text-black'>Facilities</h1>
 										<div className='grid xl:grid-cols-3 lg:grid-cols-2 lg:gap-0 md:grid-cols-1 md:gap-2 sm:gap-3 xxs:grid-cols-3 xxxs:grid-cols-2'>
 											{data?.amenities?.map((amenity) => (
 												<div className='p-3 w-24 border-2 rounded-xl flex flex-col justify-center items-center gap-[.5rem]'>
@@ -317,17 +369,16 @@ export default function Home({ data }) {
 									<></>
 								)}
 							</div>
-						</div>
-					</div>
 
-					{/* <!-- buttons --> */}
-					{/* <div className="flex gap-4 fixed bottom-5 sm:right-5 xs:right-[4.5rem] xxs:right-[3rem] xxxs:right-5 z-100"> */}
-					<div className='fixed bottom-5 w-full z-100 xl:px-28 xl:bottom-8 lg:px-20 md:px-16 px-0'>
-						<div className='flex justify-center md:justify-end gap-4'>
+
+
+
+							<div className='absolute left-0 md:right-0 bottom-2 w-full px-5 '>
+						<div className='flex justify-center md:justify-end gap-2 w-full'>
 							{data?.company_contact?.phone_number && (
 								<button
 									onClick={() => router.push(`tel:${data.company_contact.phone_number}`)}
-									className='bg-blue-400 text-white px-4 py-2 rounded-md flex items-center gap-3'>
+									className='bg-blue-400 text-white px-4 py-2 rounded-md  gap-3 text-center w-full  md:w-40 flex items-center justify-center'>
 									<Image className='w-8' src={Phone} alt='' />
 									Phone
 								</button>
@@ -335,13 +386,23 @@ export default function Home({ data }) {
 							{data?.company_contact?.whatsapp_number && (
 								<button
 									onClick={() => router.push(`https://wa.me/${data.company_contact.whatsapp_number}`)}
-									className='bg-green-500 text-white px-4 py-2 rounded-md flex items-center gap-3'>
+									className='bg-green-500 text-white px-4 py-2 rounded-md gap-3  text-center w-full  md:w-40  flex items-center justify-center'>
 									<Image className='w-8' src={WhatsApp} alt='' />
 									Whatsapp
 								</button>
 							)}
 						</div>
 					</div>
+
+
+
+
+						</div>
+					</div>
+
+					{/* <!-- buttons --> */}
+					{/* <div className="flex gap-4 fixed bottom-5 sm:right-5 xs:right-[4.5rem] xxs:right-[3rem] xxxs:right-5 z-100"> */}
+			
 				</div>
 			)}
 		</>
