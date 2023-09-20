@@ -18,7 +18,7 @@ export default function Home({ data }) {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		setImg1(data.property_images);
+		setImg1(data.property_images || []);
 
 		console.log(data);
 
@@ -352,7 +352,7 @@ export async function getServerSideProps(context) {
 	// split the document.location.href on seeing / and store the last element of array to uuid
 	// const uuid = document.location.href.split('/').pop()
 	const { uuid } = context.query;
-	const res = await fetch(`https://app.raasees.com/api/v1/property/share/${uuid}/`);
+	const res = await fetch(`http://137.184.5.48/api/v1/property/share/${uuid}/`);
 	const data = await res.json();
 
 	return {
