@@ -54,19 +54,19 @@ export default function Home({ data }) {
 					// }       Price : ${data.price}${data.per_unit !== 'total' ? `${data.per_unit}` : ''} ${
 					// 	data.description ? `Description: ${data.description} ` : ''
 					// } `}
-                    content={`Price : ${data.price}${data.per_unit !== 'total' ? `${data.per_unit}` : ''} ${
+                    content={`Price : ${data.price_in_words || data.price_formatted ||data.price}${data.per_unit !== 'total' ? `${data.per_unit}` : ''} ${
 						data.description ? `Description: ${data.description} ` : ''
 					} `}
 				/>
 				<meta property='og:title' content={data.property_name} />
 				<meta
 					property='og:image'
-					content={data.property_images && data.property_images.length > 0 ? data.property_images[0].image_url_thumbnail_200 : ''}
+					content={data.property_images && data.property_images.length > 0 ? data.property_images[0].image_url_thumbnail_meta : ''}
 				/>
 				<meta property='title' content={data.property_name} />
 				<meta
 					property='image'
-					content={data.property_images && data.property_images.length > 0 ? data.property_images[0].image_url_thumbnail_200 : ''}
+					content={data.property_images && data.property_images.length > 0 ? data.property_images[0].image_url_thumbnail_meta : ''}
 				/>
 			</Head>
 
